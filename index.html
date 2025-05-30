@@ -365,6 +365,118 @@
             50% { transform: translateY(-10px); }
         }
 
+        /* NEW PROGRESS TRACKER STYLES */
+        .progress-section {
+            margin-bottom: 40px;
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-header h2 {
+            font-size: 2.2rem;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .progress-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .last-update {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .progress-card {
+            background: rgba(255,255,255,0.12);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .progress-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00d4aa);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .progress-stats {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .current {
+            color: #00ff88;
+        }
+
+        .target {
+            opacity: 0.7;
+        }
+
+        .percentage {
+            color: #FFD700;
+            margin-left: 15px;
+        }
+
+        .progress-value-large {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        .progress-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
         @media (max-width: 768px) {
             .header h1 {
                 font-size: 2rem;
@@ -586,6 +698,66 @@
             </div>
         </div>
 
+        <!-- PROGRESS TRACKER SECTION - NEW! -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <h2>📈 Live Progress Tracker</h2>
+                <p class="progress-subtitle">Real-time updates on your path to freedom</p>
+                <div class="last-update">Last Updated: <span id="progressTimestamp">May 29, 2025 - 11:10 PM PST</span></div>
+            </div>
+            
+            <div class="progress-grid">
+                <div class="progress-card pulse">
+                    <div class="progress-icon">🎯</div>
+                    <div class="progress-title">Monthly Revenue Goal</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">$750</span>
+                        <span class="target">/ $5,000</span>
+                        <span class="percentage">15%</span>
+                    </div>
+                    <div class="progress-note">Vancouver Pet Services launching strong! 🚀</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">🏢</div>
+                    <div class="progress-title">Business Clients</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">3</span>
+                        <span class="target">/ 10</span>
+                        <span class="percentage">30%</span>
+                    </div>
+                    <div class="progress-note">Great momentum building!</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">⏰</div>
+                    <div class="progress-title">Days to Freedom</div>
+                    <div class="progress-value-large">186</div>
+                    <div class="progress-note">Q3 2025 target date approaching!</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">💎</div>
+                    <div class="progress-title">Investment Ready</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">$170K</span>
+                        <span class="target">/ $200K</span>
+                        <span class="percentage">85%</span>
+                    </div>
+                    <div class="progress-note">House equity almost ready to deploy</div>
+                </div>
+            </div>
+        </div>
+
         <div class="cta-section">
             <h2>🔥 THE EMPIRE STARTS MONDAY</h2>
             <p>From $5K goal to multi-million dollar wealth strategy</p>
@@ -683,4 +855,411 @@
         }
     </script>
 </body>
-</html>
+</html>        <!-- PROGRESS TRACKER SECTION - NEW! -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <h2>📈 Live Progress Tracker</h2>
+                <p class="progress-subtitle">Real-time updates on your path to freedom</p>
+                <div class="last-update">Last Updated: <span id="progressTimestamp"></span></div>
+            </div>
+            
+            <div class="progress-grid">
+                <div class="progress-card pulse">
+                    <div class="progress-icon">🎯</div>
+                    <div class="progress-title">Monthly Revenue Goal</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">$750</span>
+                        <span class="target">/ $5,000</span>
+                        <span class="percentage">15%</span>
+                    </div>
+                    <div class="progress-note">Vancouver Pet Services launching strong! 🚀</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">🏢</div>
+                    <div class="progress-title">Business Clients</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 30%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">3</span>
+                        <span class="target">/ 10</span>
+                        <span class="percentage">30%</span>
+                    </div>
+                    <div class="progress-note">Great momentum building!</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">⏰</div>
+                    <div class="progress-title">Days to Freedom</div>
+                    <div class="progress-value-large">186</div>
+                    <div class="progress-note">Q3 2025 target date approaching!</div>
+                </div>
+                
+                <div class="progress-card">
+                    <div class="progress-icon">💎</div>
+                    <div class="progress-title">Investment Ready</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                    <div class="progress-stats">
+                        <span class="current">$170K</span>
+                        <span class="target">/ $200K</span>
+                        <span class="percentage">85%</span>
+                    </div>
+                    <div class="progress-note">House equity almost ready to deploy</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION ITEMS SECTION - NEW! -->
+        <div class="action-section">
+            <div class="action-header">
+                <h2>🎯 This Week's Action Items</h2>
+                <p class="action-subtitle">Your roadmap to $5K/month</p>
+            </div>
+            
+            <div class="action-grid">
+                <div class="action-card priority-high pulse">
+                    <div class="action-priority">🔥 HIGH PRIORITY</div>
+                    <div class="action-title">Launch Vancouver Pet Services Marketing</div>
+                    <div class="action-details">
+                        <div class="action-item">📧 Send 10 personalized emails to pet businesses</div>
+                        <div class="action-item">📞 Follow up with 5 warm leads</div>
+                        <div class="action-item">🌐 Share website on local business groups</div>
+                    </div>
+                    <div class="action-deadline">Deadline: This Friday</div>
+                </div>
+                
+                <div class="action-card priority-medium">
+                    <div class="action-priority">⚡ MEDIUM</div>
+                    <div class="action-title">Expand Service Offerings</div>
+                    <div class="action-details">
+                        <div class="action-item">🎨 Create 3 new website templates</div>
+                        <div class="action-item">📋 Develop business directory packages</div>
+                        <div class="action-item">💰 Set up payment systems</div>
+                    </div>
+                    <div class="action-deadline">Next week</div>
+                </div>
+                
+                <div class="action-card priority-medium">
+                    <div class="action-priority">📈 PLANNING</div>
+                    <div class="action-title">Real Estate License Prep</div>
+                    <div class="action-details">
+                        <div class="action-item">📚 Research Oregon RE requirements</div>
+                        <div class="action-item">🏫 Find online course options</div>
+                        <div class="action-item">💵 Budget for licensing costs</div>
+                    </div>
+                    <div class="action-deadline">Month-end</div>
+                </div>
+                
+                <div class="action-card priority-low">
+                    <div class="action-priority">🔮 FUTURE</div>
+                    <div class="action-title">AgentAI Partnership</div>
+                    <div class="action-details">
+                        <div class="action-item">☕ Coffee meeting with Sharaen</div>
+                        <div class="action-item">📊 Review AgentAI platform demo</div>
+                        <div class="action-item">🤝 Discuss partnership terms</div>
+                    </div>
+                    <div class="action-deadline">Next month</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CELEBRATION SECTION - NEW! -->
+        <div class="celebration-section">
+            <div class="celebration-content">
+                <h2>🎉 Recent Wins & Milestones</h2>
+                <div class="celebration-grid">
+                    <div class="celebration-item">
+                        <div class="celebration-icon">🚀</div>
+                        <div class="celebration-text">
+                            <strong>Auto-Deploy Pipeline Live!</strong><br>
+                            Professional development workflow activated
+                        </div>
+                        <div class="celebration-date">Today</div>
+                    </div>
+                    <div class="celebration-item">
+                        <div class="celebration-icon">🌐</div>
+                        <div class="celebration-text">
+                            <strong>Vancouver Pet Services Launched</strong><br>
+                            40+ businesses directory is live and generating leads
+                        </div>
+                        <div class="celebration-date">This week</div>
+                    </div>
+                    <div class="celebration-item">
+                        <div class="celebration-icon">📱</div>
+                        <div class="celebration-text">
+                            <strong>Claude 4 + MCP Setup Complete</strong><br>
+                            Enterprise-grade development tools operational
+                        </div>
+                        <div class="celebration-date">Today</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        /* NEW PROGRESS TRACKER STYLES */
+        .progress-section {
+            margin-bottom: 40px;
+        }
+
+        .progress-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .progress-header h2 {
+            font-size: 2.2rem;
+            color: #00ff88;
+            margin-bottom: 10px;
+        }
+
+        .progress-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .last-update {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            font-style: italic;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .progress-card {
+            background: rgba(255,255,255,0.12);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .progress-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .progress-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .progress-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00ff88, #00d4aa);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .progress-stats {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .current {
+            color: #00ff88;
+        }
+
+        .target {
+            opacity: 0.7;
+        }
+
+        .percentage {
+            color: #FFD700;
+            margin-left: 15px;
+        }
+
+        .progress-value-large {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 15px 0;
+        }
+
+        .progress-note {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        /* ACTION ITEMS STYLES */
+        .action-section {
+            margin-bottom: 40px;
+        }
+
+        .action-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .action-header h2 {
+            font-size: 2.2rem;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+
+        .action-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .action-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .action-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #FFD700;
+            transition: transform 0.3s ease;
+        }
+
+        .action-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .priority-high {
+            border-left-color: #FF6B6B;
+        }
+
+        .priority-medium {
+            border-left-color: #4ECDC4;
+        }
+
+        .priority-low {
+            border-left-color: #95A5A6;
+        }
+
+        .action-priority {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #FFD700;
+        }
+
+        .priority-high .action-priority {
+            color: #FF6B6B;
+        }
+
+        .priority-medium .action-priority {
+            color: #4ECDC4;
+        }
+
+        .priority-low .action-priority {
+            color: #95A5A6;
+        }
+
+        .action-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .action-details {
+            margin-bottom: 15px;
+        }
+
+        .action-item {
+            padding: 8px 0;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.4;
+        }
+
+        .action-deadline {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #FF6B6B;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* CELEBRATION STYLES */
+        .celebration-section {
+            margin-bottom: 40px;
+        }
+
+        .celebration-content {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .celebration-content h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #FFD700;
+            margin-bottom: 25px;
+        }
+
+        .celebration-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .celebration-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            border-left: 3px solid #00ff88;
+        }
+
+        .celebration-icon {
+            font-size: 2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .celebration-text {
+            flex: 1;
+            line-height: 1.4;
+        }
+
+        .celebration-date {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            font-style: italic;
+            flex-shrink: 0;
+        }
