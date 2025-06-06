@@ -1,0 +1,22 @@
+[
+    {
+        "id": "big-beautiful-bill-2025",
+        "title": "The One Big Beautiful Bill Act of 2025",
+        "category": "politics",
+        "description": "A comprehensive breakdown of the sweeping tax and spending bill that's reshaping America's economic landscape",
+        "date": "2025-06-06",
+        "views": 0,
+        "readTime": "5 min",
+        "file": "topics/politics/big-beautiful-bill-2025.html"
+    },
+    {
+        "id": "financial-dashboard",
+        "title": "Master Plan 2025 - Financial Freedom",
+        "category": "dashboard", 
+        "description": "Seth & Monique's path to financial freedom - real-time progress tracking, investment strategies, and business goals",
+        "date": "2025-06-06",
+        "views": 0,
+        "readTime": "Dashboard",
+        "file": "topics/dashboard/financial-dashboard.html"
+    }
+]

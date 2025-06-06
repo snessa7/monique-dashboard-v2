@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The One Big Beautiful Bill Act of 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        h1 {
+            font-size: 4em;
+            font-weight: 800;
+            background: linear-gradient(45deg, #00d4ff, #ff00ff, #00d4ff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient 3s ease infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+        }
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            font-size: 1.5em;
+            color: #a8a8a8;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(238, 90, 36, 0.4);
+            animation: float 2s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        .section {
+            margin: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .icon {
+            font-size: 1.2em;
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .provision-grid {
+            display: grid;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .provision-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+            padding: 20px;
+            border-radius: 15px;
+            border-left: 4px solid;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .provision-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+            opacity: 0;
+        }
+
+        .provision-card:hover::before {
+            opacity: 1;
+            top: -20%;
+            right: -20%;
+        }
+
+        .provision-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 25px rgba(0, 212, 255, 0.3);
+        }
+        .tax-card { border-left-color: #00d4ff; }
+        .program-card { border-left-color: #ff00ff; }
+        .cut-card { border-left-color: #ff6b6b; }
+        .other-card { border-left-color: #4ecdc4; }
+
+        .provision-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+
+        .provision-detail {
+            color: #c8c8c8;
+            line-height: 1.8;
+        }
+
+        .highlight {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .impact-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .impact-number {
+            font-size: 3em;
+            font-weight: 800;
+            color: #ff6b6b;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
+        }
+
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5em; }
+            .section-title { font-size: 1.8em; }
+            .provision-card { padding: 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>The One Big Beautiful Bill</h1>
+            <p class="subtitle">House Resolution 1 - The One Big Beautiful Bill Act of 2025</p>
+            <div class="status">Passed House 215-214 | Now in Senate</div>
+        </div>
+        <div class="impact-box">
+            <div class="impact-number">$3.8 TRILLION</div>
+            <p>Projected addition to federal debt over 10 years</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">💰</span> Tax Provisions
+            </h2>
+            <div class="provision-grid">
+                <div class="provision-card tax-card">
+                    <div class="provision-title">2017 Tax Cuts Made Permanent</div>
+                    <div class="provision-detail">
+                        The bill locks in the Tax Cuts and Jobs Act provisions that were set to expire after 2025. This maintains the current seven tax brackets with the top rate at <span class="highlight">37%</span> instead of reverting to 39.6%. For a family earning $75,000, this saves approximately <span class="highlight">$1,700 annually</span>.
+                    </div>
+                </div>
+
+                <div class="provision-card tax-card">
+                    <div class="provision-title">No Tax on Tips, Overtime & Car Loans</div>
+                    <div class="provision-detail">
+                        Workers in hospitality and service industries won't pay federal income tax on tip income. Overtime pay becomes tax-free, potentially saving workers up to <span class="highlight">$1,750 annually</span>. Interest on auto loans becomes deductible, helping millions of Americans afford vehicles.
+                    </div>
+                </div>
+
+                <div class="provision-card tax-card">
+                    <div class="provision-title">Small Business Expansion</div>
+                    <div class="provision-detail">
+                        The Section 199A deduction increases from 20% to <span class="highlight">23%</span> and becomes permanent. This is projected to create over <span class="highlight">1 million new jobs</span> and generate $750 billion in economic growth. Businesses can immediately expense 100% of equipment purchases and R&D costs.
+                    </div>
+                </div>
+
+                <div class="provision-card tax-card">
+                    <div class="provision-title">SALT Deduction Quadrupled</div>
+                    <div class="provision-detail">
+                        State and local tax deductions increase from $10,000 to <span class="highlight">$40,000</span> in 2025, with annual 1% increases through 2033. However, this phases out for incomes above $500,000, primarily benefiting middle and upper-middle class taxpayers in high-tax states.
+                    </div>
+                </div>
+                <div class="provision-card tax-card">
+                    <div class="provision-title">Enhanced Child Tax Credit</div>
+                    <div class="provision-detail">
+                        The credit increases from $2,000 to <span class="highlight">$2,500 per child</span> for 2025-2028, then permanently stays at $2,000. This provides additional relief for over 40 million families, putting an extra $500 per child in their pockets during the enhanced period.
+                    </div>
+                </div>
+
+                <div class="provision-card tax-card">
+                    <div class="provision-title">Senior Tax Relief</div>
+                    <div class="provision-detail">
+                        Seniors receive an expanded standard deduction, saving up to <span class="highlight">$450 annually</span>. While not eliminating taxes on Social Security as originally promised, this provides meaningful relief for retirees on fixed incomes.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🎁</span> New Programs
+            </h2>
+            <div class="provision-grid">
+                <div class="provision-card program-card">
+                    <div class="provision-title">Trump Accounts for Children</div>
+                    <div class="provision-detail">
+                        Every child born in America receives a <span class="highlight">$1,000</span> one-time federal deposit into a special savings account. These "Trump Accounts" (originally MAGA Accounts) can grow tax-free and be used for education, first home purchases, or starting a business when the child reaches adulthood.
+                    </div>
+                </div>
+
+                <div class="provision-card program-card">
+                    <div class="provision-title">Supercharged Health Savings Accounts</div>
+                    <div class="provision-detail">
+                        HSA contribution limits <span class="highlight">double</span> for middle-income earners: $8,600 for individuals and $17,100 for couples (earning under $75k/$150k). Revolutionary: HSAs can now cover gym memberships and fitness classes up to <span class="highlight">$500/year</span> for individuals or $1,000 for families.
+                    </div>
+                </div>
+
+                <div class="provision-card program-card">
+                    <div class="provision-title">Infrastructure Modernization</div>
+                    <div class="provision-detail">
+                        <span class="highlight">$12.5 billion</span> allocated to modernize the FAA's antiquated systems, replacing floppy disks and paper strips with 21st-century technology. This addresses critical air traffic control staffing shortages affecting 27,000 daily flights.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">✂️</span> Spending Cuts
+            </h2>
+            <div class="provision-grid">
+                <div class="provision-card cut-card">
+                    <div class="provision-title">Medicaid Reductions</div>
+                    <div class="provision-detail">
+                        Significant cuts to Medicaid funding will affect millions of low-income Americans' access to healthcare. States will need to fill funding gaps or reduce coverage, potentially impacting nursing home care, children's health programs, and disability services.
+                    </div>
+                </div>
+
+                <div class="provision-card cut-card">
+                    <div class="provision-title">SNAP Benefits Slashed</div>
+                    <div class="provision-detail">
+                        Food stamp programs face what critics call the <span class="highlight">"biggest cut in the program's history"</span>. This will reduce assistance for millions of families struggling with food insecurity, potentially affecting children's nutrition and school performance.
+                    </div>
+                </div>
+
+                <div class="provision-card cut-card">
+                    <div class="provision-title">ACA Premium Subsidies Expire</div>
+                    <div class="provision-detail">
+                        Affordable Care Act premium tax credits end after <span class="highlight">2025</span>, causing out-of-pocket insurance costs to spike. Millions may lose coverage as premiums become unaffordable, particularly affecting middle-income families who don't qualify for Medicaid.
+                    </div>
+                </div>
+
+                <div class="provision-card cut-card">
+                    <div class="provision-title">Education Funding Cuts</div>
+                    <div class="provision-detail">
+                        Pell Grants and other education programs face reductions, limiting college access for low-income students. This reverses decades of investment in making higher education accessible and may force students to take on more debt.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">
+                <span class="icon">🔧</span> Other Major Provisions
+            </h2>
+            <div class="provision-grid">
+                <div class="provision-card other-card">
+                    <div class="provision-title">Green Energy Incentives Eliminated</div>
+                    <div class="provision-detail">
+                        All tax credits for electric vehicles, solar panels, and renewable energy investments are cancelled. This reverses Biden-era climate policies and may slow the transition to clean energy, affecting both consumers and the growing green tech industry.
+                    </div>
+                </div>
+                <div class="provision-card other-card">
+                    <div class="provision-title">Border & Military Spending Boost</div>
+                    <div class="provision-detail">
+                        Significant increases in border security funding and military spending aim to strengthen national defense and immigration enforcement. Details on specific allocations are still being finalized in committee.
+                    </div>
+                </div>
+
+                <div class="provision-card other-card">
+                    <div class="provision-title">Debt Ceiling Raised</div>
+                    <div class="provision-detail">
+                        The federal debt limit increases by <span class="highlight">$4 trillion</span>, preventing a potential default crisis this summer. This accommodation is necessary given the bill's projected $3.8 trillion addition to the national debt.
+                    </div>
+                </div>
+
+                <div class="provision-card other-card">
+                    <div class="provision-title">Hidden Provisions</div>
+                    <div class="provision-detail">
+                        Critics note concerning additions: courts can't hold officials in contempt, the $200 tax on gun silencers is repealed, and various regulatory rollbacks are embedded throughout the 1,100-page document.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>This overview is based on the House-passed version. The Senate is expected to make significant changes.</p>
+            <p>Last updated: June 2025 | For Monique</p>
+        </div>
+    </div>
+</body>
+</html>
