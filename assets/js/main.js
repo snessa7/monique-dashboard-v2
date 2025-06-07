@@ -115,8 +115,7 @@ class MindBlowers {
             technology: '💻',
             culture: '🎭',
             health: '💊',
-            finance: '💰',
-            dashboard: '📊'
+            finance: '💰'
         };
 
         return `
