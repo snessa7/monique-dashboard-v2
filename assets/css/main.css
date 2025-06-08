@@ -331,10 +331,10 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 2000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.95);
+    z-index: 9999;
     overflow-y: auto;
 }
 
@@ -342,12 +342,13 @@ body {
     position: relative;
     width: 90%;
     max-width: 1200px;
-    min-height: 90%;
-    margin: 5% auto;
-    background: var(--bg-dark);
-    border-radius: 20px;
-    border: 1px solid var(--border-color);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    min-height: 80vh;
+    margin: 2% auto;
+    background: #1a1a1a;
+    border-radius: 15px;
+    border: 2px solid #333;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    color: white;
 }
 
 .close {

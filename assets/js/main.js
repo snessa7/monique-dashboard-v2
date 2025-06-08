@@ -80,6 +80,20 @@ class MindBlowers {
         });
 
         // FAB menu
+        document.getElementById('testModal').addEventListener('click', () => {
+            this.showSimpleModal(`
+                <div style="color: white; padding: 40px; text-align: center;">
+                    <h1 style="color: #00d4ff; margin-bottom: 20px;">🧪 Modal Test</h1>
+                    <p style="font-size: 18px; margin-bottom: 20px;">This is a test modal!</p>
+                    <p>If you can see this, the modal system is working correctly.</p>
+                    <button onclick="document.getElementById('topicModal').style.display='none'" 
+                            style="margin-top: 20px; padding: 10px 20px; background: #00d4ff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                        Close Test
+                    </button>
+                </div>
+            `);
+        });
+
         document.getElementById('randomTopic').addEventListener('click', () => {
             this.openRandomTopic();
         });
@@ -136,72 +150,91 @@ class MindBlowers {
     }
 
     async openTopic(topicId) {
-        console.log('openTopic called with ID:', topicId);
+        console.log('=== OPENING TOPIC ===');
+        console.log('Topic ID:', topicId);
+        
+        // First, let's test the modal with simple content
+        this.showSimpleModal(`
+            <div style="color: white; padding: 40px; text-align: center; background: #333; border-radius: 10px;">
+                <h1 style="color: #00d4ff; margin-bottom: 20px;">Testing Modal</h1>
+                <p>If you can see this, the modal is working!</p>
+                <p>Loading content for topic: ${topicId}</p>
+                <div id="loadingStatus" style="margin-top: 20px; font-style: italic;">Loading...</div>
+            </div>
+        `);
         
         const topic = this.topics.find(t => t.id === topicId);
-        console.log('Found topic:', topic);
+        if (!topic) {
+            this.updateModalContent('Topic not found: ' + topicId);
+            return;
+        }
         
-        if (topic) {
-            topic.views++;
-            this.saveTopics();
+        try {
+            console.log('Fetching:', topic.file);
+            const response = await fetch(topic.file);
+            console.log('Response status:', response.status);
             
-            try {
-                console.log('Fetching topic from:', topic.file);
+            if (response.ok) {
+                const content = await response.text();
+                console.log('Content loaded, first 100 chars:', content.substring(0, 100));
                 
-                // Load topic content directly instead of using iframe
-                const response = await fetch(topic.file);
-                console.log('Fetch response status:', response.status);
+                // Extract just the body content
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(content, 'text/html');
+                const bodyContent = doc.body ? doc.body.innerHTML : content;
                 
-                if (response.ok) {
-                    const content = await response.text();
-                    console.log('Content loaded, length:', content.length);
-                    this.displayTopicContent(content);
-                } else {
-                    console.error('Failed to load topic:', topic.file, 'Status:', response.status);
-                    this.showErrorMessage('Failed to load topic content - HTTP ' + response.status);
-                }
-            } catch (error) {
-                console.error('Error loading topic:', error);
-                this.showErrorMessage('Error loading topic content: ' + error.message);
+                this.updateModalContent(bodyContent);
+                topic.views++;
+                this.saveTopics();
+            } else {
+                this.updateModalContent(`Error loading content: HTTP ${response.status}`);
             }
-        } else {
-            console.error('Topic not found for ID:', topicId);
-            this.showErrorMessage('Topic not found');
+        } catch (error) {
+            console.error('Fetch error:', error);
+            this.updateModalContent('Network error: ' + error.message);
         }
     }
 
-    displayTopicContent(htmlContent) {
-        console.log('displayTopicContent called with content length:', htmlContent.length);
-        
+    showSimpleModal(content) {
         const modal = document.getElementById('topicModal');
         const modalContent = modal.querySelector('.modal-content');
         
-        // Parse HTML and extract body content
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, 'text/html');
-        const bodyContent = doc.body.innerHTML;
-        
-        console.log('Parsed body content length:', bodyContent.length);
-        console.log('First 200 chars:', bodyContent.substring(0, 200));
-        
-        // Clear existing content and add new content
         modalContent.innerHTML = `
-            <span class="close">&times;</span>
-            <div class="topic-content-wrapper">
-                ${bodyContent}
+            <span class="close" style="position: absolute; top: 15px; right: 25px; font-size: 28px; font-weight: bold; color: white; cursor: pointer; z-index: 1000;">&times;</span>
+            <div class="modal-body" style="padding: 20px; height: 100%; overflow-y: auto;">
+                ${content}
             </div>
         `;
         
-        // Re-attach close event listener
+        // Add close functionality
         const closeBtn = modalContent.querySelector('.close');
-        closeBtn.addEventListener('click', () => {
+        closeBtn.onclick = () => {
             modal.style.display = 'none';
-        });
+        };
         
-        // Ensure modal is visible
+        // Show modal
         modal.style.display = 'block';
-        
-        console.log('Modal should now be visible');
+        console.log('Modal displayed');
+    }
+
+    updateModalContent(newContent) {
+        const modalBody = document.querySelector('#topicModal .modal-body');
+        if (modalBody) {
+            modalBody.innerHTML = `
+                <span class="close" style="position: absolute; top: 15px; right: 25px; font-size: 28px; font-weight: bold; color: white; cursor: pointer; z-index: 1000;">&times;</span>
+                <div style="color: white; background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px; margin-top: 30px;">
+                    ${newContent}
+                </div>
+            `;
+            
+            // Re-attach close functionality
+            const closeBtn = modalBody.querySelector('.close');
+            if (closeBtn) {
+                closeBtn.onclick = () => {
+                    document.getElementById('topicModal').style.display = 'none';
+                };
+            }
+        }
     }
 
     showErrorMessage(message) {
