@@ -69,12 +69,14 @@ class MindBlowers {
             this.handleSearch(e.target.value);
         });
 
-        // Modal
+        // Modal - close handler will be attached dynamically when content is loaded
         const modal = document.getElementById('topicModal');
-        const closeBtn = document.querySelector('.close');
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.getElementById('topicFrame').src = '';
+        
+        // Add click outside modal to close
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
         });
 
         // FAB menu
@@ -133,17 +135,74 @@ class MindBlowers {
         `;
     }
 
-    openTopic(topicId) {
+    async openTopic(topicId) {
         const topic = this.topics.find(t => t.id === topicId);
         if (topic) {
             topic.views++;
             this.saveTopics();
             
-            const modal = document.getElementById('topicModal');
-            const frame = document.getElementById('topicFrame');
-            frame.src = topic.file;
-            modal.style.display = 'block';
+            try {
+                // Load topic content directly instead of using iframe
+                const response = await fetch(topic.file);
+                if (response.ok) {
+                    const content = await response.text();
+                    this.displayTopicContent(content);
+                } else {
+                    console.error('Failed to load topic:', topic.file);
+                    this.showErrorMessage('Failed to load topic content');
+                }
+            } catch (error) {
+                console.error('Error loading topic:', error);
+                this.showErrorMessage('Error loading topic content');
+            }
         }
+    }
+
+    displayTopicContent(htmlContent) {
+        const modal = document.getElementById('topicModal');
+        const modalContent = modal.querySelector('.modal-content');
+        
+        // Parse HTML and extract body content
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, 'text/html');
+        const bodyContent = doc.body.innerHTML;
+        
+        // Clear existing content and add new content
+        modalContent.innerHTML = `
+            <span class="close">&times;</span>
+            <div class="topic-content-wrapper">
+                ${bodyContent}
+            </div>
+        `;
+        
+        // Re-attach close event listener
+        const closeBtn = modalContent.querySelector('.close');
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        modal.style.display = 'block';
+    }
+
+    showErrorMessage(message) {
+        const modal = document.getElementById('topicModal');
+        const modalContent = modal.querySelector('.modal-content');
+        
+        modalContent.innerHTML = `
+            <span class="close">&times;</span>
+            <div class="error-message">
+                <h2>Oops! Something went wrong</h2>
+                <p>${message}</p>
+                <button onclick="document.getElementById('topicModal').style.display='none'">Close</button>
+            </div>
+        `;
+        
+        const closeBtn = modalContent.querySelector('.close');
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        modal.style.display = 'block';
     }
 
     openRandomTopic() {
