@@ -136,29 +136,43 @@ class MindBlowers {
     }
 
     async openTopic(topicId) {
+        console.log('openTopic called with ID:', topicId);
+        
         const topic = this.topics.find(t => t.id === topicId);
+        console.log('Found topic:', topic);
+        
         if (topic) {
             topic.views++;
             this.saveTopics();
             
             try {
+                console.log('Fetching topic from:', topic.file);
+                
                 // Load topic content directly instead of using iframe
                 const response = await fetch(topic.file);
+                console.log('Fetch response status:', response.status);
+                
                 if (response.ok) {
                     const content = await response.text();
+                    console.log('Content loaded, length:', content.length);
                     this.displayTopicContent(content);
                 } else {
-                    console.error('Failed to load topic:', topic.file);
-                    this.showErrorMessage('Failed to load topic content');
+                    console.error('Failed to load topic:', topic.file, 'Status:', response.status);
+                    this.showErrorMessage('Failed to load topic content - HTTP ' + response.status);
                 }
             } catch (error) {
                 console.error('Error loading topic:', error);
-                this.showErrorMessage('Error loading topic content');
+                this.showErrorMessage('Error loading topic content: ' + error.message);
             }
+        } else {
+            console.error('Topic not found for ID:', topicId);
+            this.showErrorMessage('Topic not found');
         }
     }
 
     displayTopicContent(htmlContent) {
+        console.log('displayTopicContent called with content length:', htmlContent.length);
+        
         const modal = document.getElementById('topicModal');
         const modalContent = modal.querySelector('.modal-content');
         
@@ -166,6 +180,9 @@ class MindBlowers {
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, 'text/html');
         const bodyContent = doc.body.innerHTML;
+        
+        console.log('Parsed body content length:', bodyContent.length);
+        console.log('First 200 chars:', bodyContent.substring(0, 200));
         
         // Clear existing content and add new content
         modalContent.innerHTML = `
@@ -181,7 +198,10 @@ class MindBlowers {
             modal.style.display = 'none';
         });
         
+        // Ensure modal is visible
         modal.style.display = 'block';
+        
+        console.log('Modal should now be visible');
     }
 
     showErrorMessage(message) {

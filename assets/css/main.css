@@ -377,6 +377,23 @@ body {
     padding: 20px;
     overflow-y: auto;
     max-height: calc(90vh - 40px);
+    color: #ffffff;
+    background: var(--bg-dark);
+    position: relative;
+    z-index: 1;
+}
+
+/* Ensure content is visible */
+.topic-content-wrapper * {
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.topic-content-wrapper .container {
+    max-width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .error-message {
