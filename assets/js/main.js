@@ -14,28 +14,45 @@ class MindBlowers {
     }
 
     async loadTopics() {
-        // Load topics from data file
-        try {
-            const response = await fetch('data/topics.json');
-            if (response.ok) {
-                this.topics = await response.json();
-            } else {
-                // Initialize with the big beautiful bill
-                this.topics = [{
-                    id: 'big-beautiful-bill-2025',
-                    title: 'The One Big Beautiful Bill Act of 2025',
-                    category: 'politics',
-                    description: 'A comprehensive breakdown of the sweeping tax and spending bill that\'s reshaping America\'s economic landscape',
-                    date: '2025-06-06',
-                    views: 0,
-                    readTime: '5 min',
-                    file: 'topics/politics/big-beautiful-bill-2025.html'
-                }];
-                this.saveTopics();
+        console.log('Loading topics...');
+        
+        // Try multiple sources for topics data
+        const sources = [
+            'data/topics.json',
+            './data/topics.json',
+            '/data/topics.json'
+        ];
+        
+        for (const source of sources) {
+            try {
+                console.log('Trying to load from:', source);
+                const response = await fetch(source);
+                console.log('Response status:', response.status);
+                
+                if (response.ok) {
+                    this.topics = await response.json();
+                    console.log('Successfully loaded', this.topics.length, 'topics from', source);
+                    return;
+                }
+            } catch (error) {
+                console.log('Failed to load from', source, ':', error.message);
             }
-        } catch (error) {
-            console.log('Creating initial topic structure');
-            this.topics = [{
+        }
+        
+        // Fallback to hardcoded topics if all sources fail
+        console.log('Using fallback topics');
+        this.topics = [
+            {
+                id: 'master-plan-2025',
+                title: 'Master Plan 2025 - Financial Freedom Strategy',
+                category: 'finance',
+                description: 'Seth & Monique\'s comprehensive roadmap to financial independence, including income streams, investment strategy, and timeline for reaching $5K monthly goal',
+                date: '2025-12-07',
+                views: 0,
+                readTime: '8 min',
+                file: 'topics/finance/master-plan-2025.html'
+            },
+            {
                 id: 'big-beautiful-bill-2025',
                 title: 'The One Big Beautiful Bill Act of 2025',
                 category: 'politics',
@@ -44,8 +61,9 @@ class MindBlowers {
                 views: 0,
                 readTime: '5 min',
                 file: 'topics/politics/big-beautiful-bill-2025.html'
-            }];
-        }
+            }
+        ];
+        console.log('Loaded', this.topics.length, 'fallback topics');
     }
 
     saveTopics() {
